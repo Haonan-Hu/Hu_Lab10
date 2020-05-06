@@ -83,6 +83,30 @@ Node* Disjoint::findParent(Node* node)
   }
 }
 
+void Disjoint::printPath(int k)
+{
+  Node* path = nullptr;
+  if (k > 0 && k <= m_size)
+  {
+    for (int i = 0; i < k; i++)
+    {
+      path = m_arr[i];
+    }
+  }
+  else
+  {
+    throw(std::runtime_error("Wrong index\n"));
+  }
+  std::cout << "The path for the element " << k << " is : ";
+  std::cout << path->getEntry();
+  while(path->getEntry() != recFind(path))
+  {
+    path = path->getParent();
+    std::cout << " -> " << path->getEntry();
+  }
+  std::cout << '\n';
+}
+
 void Disjoint::unionSet(int X, int Y)
 {
   bool temp1 = false; //check for whether can union or not
@@ -106,6 +130,22 @@ void Disjoint::unionSet(int X, int Y)
     {
       n2->setParent(n1);
     }
+  }
+  if(temp1)
+  {
+    std::cout << X << " and " << Y << " have been merged. The representative element is ";
+    if (temp2)
+    {
+      std::cout << recFind(n1) << '\n';
+    }
+    else
+    {
+      std::cout << recFind(n2) << '\n';
+    }
+  }
+  else
+  {
+    std::cout << "unable to merge due to unfound entry in the set\n";
   }
 }
 

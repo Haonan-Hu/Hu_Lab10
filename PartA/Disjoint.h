@@ -16,8 +16,8 @@ public:
   bool checkDup(int k); //done
   Node* checkParent(Node* node); //done
   Node* findParent(Node* node); //done
-  void pathCompression(Node* node); //done
-  void print(int k);
+  void pathCompression(int k); //done
+  void printPath(int k);
 
 private:
   Node** m_arr;

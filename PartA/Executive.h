@@ -3,6 +3,7 @@
 
 #include "Disjoint.h"
 #include <string>
+#include <fstream>
 
 class Executive
 {
@@ -12,5 +13,6 @@ public:
   void run();
 private:
   Disjoint m_set;
+  std::vector<int> m_elements;
 };
 #endif
