@@ -12,11 +12,11 @@ public:
   ~Disjoint(); //done
   void makeSet(std::vector<int> elements); //done
   void unionSet(int X, int Y); //done
-  void find(int k);
-  bool checkDup(int k);
+  void find(int k); //done
+  bool checkDup(int k); //done
   Node* checkParent(Node* node); //done
-  Node* findParent(Node* node);
-  void pathCompression(Node* node);
+  Node* findParent(Node* node); //done
+  void pathCompression(Node* node); //done
   void print(int k);
 
 private:

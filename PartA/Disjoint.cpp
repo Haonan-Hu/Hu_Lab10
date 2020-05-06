@@ -71,6 +71,18 @@ Node* Disjoint::checkParent(Node* node)
   }
 }
 
+Node* Disjoint::findParent(Node* node)
+{
+  if (node->getParent() == nullptr)
+  {
+    return node;
+  }
+  else
+  {
+    return findParent(node->getParent());
+  }
+}
+
 void Disjoint::unionSet(int X, int Y)
 {
   bool temp1 = false; //check for whether can union or not
@@ -93,6 +105,48 @@ void Disjoint::unionSet(int X, int Y)
     else
     {
       n2->setParent(n1);
+    }
+  }
+}
+
+bool Disjoint::checkDup(int k)
+{
+  bool temp = false;
+  for (int i = 0; i < m_size; i++)
+  {
+    if (m_arr[i]->getEntry() == k)
+    {
+      temp = true;
+      break;
+    }
+  }
+  return temp;
+}
+
+void Disjoint::find(int k)
+{
+  Node* temp = getFind(k);
+  if (temp != nullptr)
+  {
+    std::cout << k << " has been found successfully. Its representative element is " << recFind(temp) << " .\n";
+  }
+  else
+  {
+    std::cout << k << " is not found!\n";
+  }
+}
+
+void Disjoint::pathCompression(int k)
+{
+  Node* temp = getFind(k);
+  if (temp != nullptr)
+  {
+    if (recFind(temp) != k)
+    {
+      Node* temp1 = findParent(temp);
+      Node* temp2 = temp->getParent();
+      temp->setParent(temp1);
+      pathCompression(temp2->getEntry());
     }
   }
 }
