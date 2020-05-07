@@ -190,3 +190,46 @@ void Disjoint::pathCompression(int k)
     }
   }
 }
+
+void Disjoint::insert(int k)
+{
+  m_arr[m_size]=new Node();
+  m_arr[m_size]->setEntry(k);
+  m_size++;
+}
+
+int Disjoint::search(int k)
+{
+  Node* temp = nullptr;
+  for(int i = 0; i < m_size; i++)
+  {
+    if(m_arr[i]->getEntry() == k)
+    {
+      temp = m_arr[i];
+      break;
+    }
+  }
+  if(temp != nullptr)
+  {
+    while(temp->getParent() != nullptr)
+    {
+      temp = temp->getParent();
+    }
+  }
+  else
+  {
+    return -1; // report error
+  }
+  return temp->getEntry();
+}
+
+void Disjoint::empty()
+{
+  for (int i = 0; i < m_size; i++)
+  {
+    delete m_arr[i];
+  }
+  delete[] m_arr;
+  m_arr = nullptr;
+  m_size = 0;
+}

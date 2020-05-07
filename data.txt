@@ -1,0 +1,12 @@
+n, 5
+1 6 8 12 9
+6 1 7 -1 13
+8 7 1 10 -1
+12 -1 10 1 8
+9 13 -1 8 1
+
+TyrannosaurusRex, 1
+Velociraptors, 2
+IndominousRex, 3
+Mososaurus, 4
+Spinosaurus, 5

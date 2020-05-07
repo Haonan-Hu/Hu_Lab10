@@ -17,8 +17,11 @@ public:
   Node* checkParent(Node* node); //done
   Node* findParent(Node* node); //done
   void pathCompression(int k); //done
-  void printPath(int k);
+  void printPath(int k); //done
 
+  void insert(int k);
+  int search(int k);
+  void empty();
 private:
   Node** m_arr;
   int m_size;
