@@ -80,6 +80,7 @@ void Graph::BFS(int k)
     std::cout << "(" << m_islands[std::get<0>(cross_Edges[i])] << ", " << m_islands[std::get<1>(cross_Edges[i])] << ") ";
   }
   delete[] checked;
+  std::cout << '\n';
 }
 
 void Graph::clear()
@@ -145,6 +146,7 @@ void Graph::DFS(int k)
   }
 
   delete[] checked;
+  std::cout << '\n';
 }
 
 void Graph::PrimMST()
@@ -203,6 +205,7 @@ void Graph::PrimMST()
   std::cout << "Total estimate to construct the bridges in the route = " << totalLength << "*250K = " << totalLength * 250 << "K $\n";
 
   delete[] checked;
+  std::cout << '\n';
 }
 
 void Graph::KruskalMST()
@@ -255,4 +258,5 @@ void Graph::KruskalMST()
   std::cout << "\nTotal length of the route = " << length << "\n";
   std::cout << "Total estimate to construct the bridges in the route = " << length << "*250K = " << length * 250 << "K $\n";
   tempSet.empty();
+  std::cout << '\n';
 }

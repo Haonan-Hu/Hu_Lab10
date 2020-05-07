@@ -5,21 +5,60 @@ Executive::Executive(std::string fileName)
   std::ifstream infile;
   int input;
   infile.open(fileName);
-  if (infile.is_open())
+  if(fileName == "input.txt")
   {
-    while (infile >> input)
+    if (infile.is_open())
     {
-      m_elements.push_back(input);
+      while (infile >> input)
+      {
+        m_elements.push_back(input);
+      }
+      infile.close();
+      std::cout << "\e[1mFile reading done, ready for next step:\e[0m\n";
+      std::cout << "\e[1m..................................\e[0m\n\n";
     }
-    infile.close();
-    std::cout << "\e[1mFile reading done, ready for next step:\e[0m\n";
-    std::cout << "\e[1m..................................\e[0m\n\n";
+    else
+      std::cout << "Unable to open file\n";
   }
-  else
-    std::cout << "Unable to open file\n";
+
+  if(fileName == "data.txt")
+  {
+    std::string strInput;
+    if (infile.is_open())
+    {
+      std::string line;
+      std::getline(infile, line);
+      size_t pos = line.find(",");
+      m_size = stoi(line.substr(pos + 1, '\n'));
+
+      m_arr = new int *[m_size];
+      for (int i = 0; i < m_size; i++)
+      {
+        m_arr[i] = new int[m_size];
+        for (int j = 0; j < m_size; j++)
+        {
+          infile >> m_arr[i][j];
+        }
+      }
+      std::getline(infile, strInput);
+      std::getline(infile, strInput);
+      while (std::getline(infile, strInput))
+      {
+        size_t pos = strInput.find(",");
+        std::string island = strInput.substr(0, pos);
+        m_islands.push_back(island);
+      }
+      m_graph.buildGraph(m_arr, m_size, m_islands);
+
+      std::cout << "\e[1mFile reading done, ready for next step:\e[0m\n";
+      std::cout << "\e[1m..................................\e[0m\n\n";
+    }
+    else
+      std::cout << "Unable to open file\n";
+  }
 }
 
-void Executive::run()
+void Executive::runPartA()
 {
   for(;;)
   {
@@ -90,6 +129,49 @@ void Executive::run()
     }
     if (choice == 6)
     {
+      std::cout << "Thanks for runing!\n";
+      std::cout << "\e[1m..................................\e[0m\n\n";
+      break;
+    }
+  }
+}
+
+void Executive::runPartB()
+{
+  for(;;)
+  {
+    int choice;
+    std::cout << "\nPlease choose one of the following commands:\n";
+    std::cout << "  1. BFS\n";
+    std::cout << "  2. DFS\n";
+    std::cout << "  3. Kruskal MST\n";
+    std::cout << "  4. Prim MST\n";
+    std::cout << "  5. Exit\n\n";
+    std::cout << "Enter your choice:\n";
+    std::cin >> choice;
+    if (choice == 1)
+    {
+      m_graph.BFS(0);
+      std::cout << "\e[1m..................................\e[0m\n\n";
+    }
+    if (choice == 2)
+    {
+      m_graph.DFS(0);
+      std::cout << "\e[1m..................................\e[0m\n\n";
+    }
+    if (choice == 3)
+    {
+      m_graph.KruskalMST();
+      std::cout << "\e[1m..................................\e[0m\n\n";
+    }
+    if (choice == 4)
+    {
+      m_graph.PrimMST();
+      std::cout << "\e[1m..................................\e[0m\n\n";
+    }
+    if (choice == 5)
+    {
+      m_graph.clear();
       std::cout << "Thanks for runing!\n";
       std::cout << "\e[1m..................................\e[0m\n\n";
       break;

@@ -2,16 +2,21 @@
 #include<string>
 #include<iostream>
 
-int main(int argc, char* argv[])
+int main(int argc, char** argv)
 {
-  if(argc == 2)
+  if(argc == 2 && std::string(argv[1]) == "-a")
   {
-    Executive exec(argv[1]);
-    exec.run();
+    Executive exec("input.txt");
+    exec.runPartA();
+  }
+  else if(argc == 2 && std::string(argv[1]) == "-b")
+  {
+    Executive exec("data.txt");
+    exec.runPartB();
   }
   else
   {
-    std::cout<<"File does not exist\n";
+    std::cout<<"Please use -a or -b flag\n";
   }
   return 0;
 }
