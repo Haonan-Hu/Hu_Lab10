@@ -1,7 +1,7 @@
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
-#include "Disjoint.h"
+#include "Graph.h"
 #include <string>
 #include <fstream>
 
