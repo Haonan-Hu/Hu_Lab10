@@ -142,11 +142,11 @@ void Executive::runPartB()
   {
     int choice;
     std::cout << "\nPlease choose one of the following commands:\n";
-    std::cout << "  1. BFS\n";
-    std::cout << "  2. DFS\n";
-    std::cout << "  3. Kruskal MST\n";
-    std::cout << "  4. Prim MST\n";
-    std::cout << "  5. Exit\n\n";
+    std::cout << "  1- BFS\n";
+    std::cout << "  2- DFS\n";
+    std::cout << "  3- Kruskal MST\n";
+    std::cout << "  4- Prim MST\n";
+    std::cout << "  5- Exit\n\n";
     std::cout << "Enter your choice:\n";
     std::cin >> choice;
     if (choice == 1)
